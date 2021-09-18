@@ -56,42 +56,74 @@ trunc(2.987)
 #Example:
 round(7.952,digits=2)
 
-#11
+#11 This function generates a loop until we decide to stop it
 
 #Example:
+while(TRUE){
+  print("Hello good Morning....")
+}
 
-#12
-
-#Example:
-
-#13
-
-#Example:
-
-#14
+#12 With this function we can count the times that one deceives, First we start 
+#it from what value we want it to start counting and then the rest of the function.
 
 #Example:
+counter <- 0
 
-#15
+while(counter < 5){
+  print("Counter:")
+  print(counter)
+  counter <- counter + 1
+}
 
-#Example:
-
-#16
-
-#Example:
-
-#17
-
-#Example:
-
-#18
+#13 The following function we can print the message repeatedly and then we can number them
 
 #Example:
+for(i in 0:5){
+  print(i)
+  print("Data Mining")
+}
 
-#19
+#14 With this we print the phrase one wants and the number of times that one wants
 
 #Example:
+for(i in 1:5){
+  print("Hello World!")
+}
 
-#20
+#15 With this function we can know if the number we enter is an integer or not.
 
 #Example:
+is.integer(1)
+
+#16 With this function we can know if the number we enter is double or not.
+
+#Example:
+is.double(5)
+
+
+#17 With this function it shows what type of data it is.
+
+#Example:
+typeof(2)
+
+#18 With this function we can do an operation, more simple and using variables.
+
+#Example:
+A <- 20
+B <- 6
+R <- A - B
+R
+
+#19 With this function we can do an operation, it is a little more complex than the previous one.
+
+#Example:
+var1 <-2.5
+var2 <- 4
+
+result <- var1 / var2
+result
+
+#20 In this way we can say that the numbers are different from.
+
+#Example:
+4 != 3
