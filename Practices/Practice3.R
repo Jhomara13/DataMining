@@ -42,7 +42,7 @@ profit <- revenue - expenses
 profit
 
 #Calculate Tax As 30% Of Profit And Round To 2 Decimal Points
-tax <- round(0.30 * revenue, 2)
+tax <- round(0.30 * profit, 2)
 tax 
 
 #Calculate Profit Remaining After Tax Is Deducted
