@@ -35,7 +35,255 @@ result
 
 ## Practice 2
 
+Functions
+
+Practice find 20 more functions in R and make an example of it.
+
+```R
+
+#1 Rnorm:this function takes n random number from -1 to 1 
+
+#Example: 
+rnorm(2)
+
+#2 Sqrt: this function allows you to calculate the square root of a number.
+
+#Example:
+sqrt(9)
+
+#3 Paste: this function concatenate vectors after converting to character.
+
+#Example:
+message<-paste('Hello','World')
+
+
+#4 C: this function allows you to combine and create a vector
+
+#Example:
+
+vec <- c(3,45,77)
+
+#5 Seq: this function allows you to generate a sequence
+
+#Example:
+seq(1,5)
+
+#6 Rep: this function allows to repeat a number n number of times, first we place the number then the quantity.
+
+#Example:
+rep(2,10)
+
+#7 Sum: this function sums all the values within the range you set.
+
+#Example:
+sum(25:80)
+
+
+#8 length:this function shows the number of elements in a vector.
+
+#Example:
+x<-c(1,2,3,4)
+length(x)
+
+#9 trunc: this function removes decimals from a number.
+
+#Example:
+trunc(2.987)
+
+#10 round: this function rounds a number to the specified decimal places.
+
+#Example:
+round(7.952,digits=2)
+
+#11 This function generates a loop until we decide to stop it
+
+#Example:
+while(TRUE){
+  print("Hello good Morning....")
+}
+
+#12 With this function we can count the times that one deceives, First we start 
+#it from what value we want it to start counting and then the rest of the function.
+
+#Example:
+counter <- 0
+
+while(counter < 5){
+  print("Counter:")
+  print(counter)
+  counter <- counter + 1
+}
+
+#13 The following function we can print the message repeatedly and then we can number them
+
+#Example:
+for(i in 0:5){
+  print(i)
+  print("Data Mining")
+}
+
+#14 With this we print the phrase one wants and the number of times that one wants
+
+#Example:
+for(i in 1:5){
+  print("Hello World!")
+}
+
+#15 With this function we can know if the number we enter is an integer or not.
+
+#Example:
+is.integer(1)
+
+#16 With this function we can know if the number we enter is double or not.
+
+#Example:
+is.double(5)
+
+
+#17 With this function it shows what type of data it is.
+
+#Example:
+typeof(2)
+
+#18 With this function we can do an operation, more simple and using variables.
+
+#Example:
+A <- 20
+B <- 6
+R <- A - B
+R
+
+#19 With this function we can do an operation, it is a little more complex than the previous one.
+
+#Example:
+var1 <-2.5
+var2 <- 4
+
+result <- var1 / var2
+result
+
+#20 In this way we can say that the numbers are different from.
+
+#Example:
+4 != 3
+```
+
 ## Practice 3
+
+Scenario: You are a Data Scientist working for a consulting firm.
+One of your colleagues from the Auditing Department has asked you
+to help them assess the financial statement of organization X.
+
+You have been supplied with two vector of data: mounthly revenue and
+expenses for the financial year in quiestion. Your task is to calculate
+the following financial matrics:
+  
+- profit for each mounth
+- profit after tax for each month (the tax rate is 30%)
+- profit margin for each month - equal to profit after tax divided by revenue
+- good months - where the profit after tax was greater than the mean for the year
+- bad months - where the profit after tax was less then the mean for years
+- the best month - where the profit after tax was max for the year
+- the worst month - where the profit after tax was min for the year
+
+All results need to be presented as vectors.
+
+Results for dollar values need to be calculate with $0.01 precision, but need to be
+presented in Units of $1,000(i.e. 1k) with no decimal point.
+
+Results for the profit margin ratio needed to be presented in units of % with no
+decimal points.
+
+Note: Your collegue has warned you that it is okay for tax for any given month to be
+negative (in accounting terms, negative tax translates into a deferred tax asset).
+
+Hint 1
+
+Use:
+- round()
+- mean() 
+- max()
+- min()
+
+```R
+#Data
+revenue <- c(14574.49, 7606.46, 8611.41, 9175.41, 8058.65, 8105.44, 11496.28, 9766.09, 10305.32, 14379.96, 10713.97, 15433.50)
+
+expenses <- c(12051.82, 5695.07, 12319.20, 12089.72, 8658.57, 840.20, 3285.73, 5821.12, 6976.93, 16618.61, 10054.37, 3803.96)
+
+#Solution
+#Calculate Profit As The Differences Between Revenue And Expenses
+profit <- revenue - expenses 
+profit
+
+#Calculate Tax As 30% Of Profit And Round To 2 Decimal Points
+tax <- round(0.30 * profit, 2)
+tax 
+
+#Calculate Profit Remaining After Tax Is Deducted
+profit.after.tax <- profit-tax
+profit.after.tax
+
+#Calculate The Profit Margin As Profit After Tax Over Revenue
+#Round To 2 Decimal Points, Then Multiply By 100 To Get %
+profit.margin <- round(profit.after.tax/ revenue, 2) * 100
+profit.margin
+
+#Calculate The Mean Profit After Tax For The 12 Months
+mean_pat <- mean(profit.after.tax)
+mean_pat
+
+#Find The Months With Above-Mean Profit After Tax
+good.months <- profit.after.tax > mean_pat
+good.months
+
+#Bad Months Are The Opposite Of Good Months !
+bad.months <- !good.months
+bad.months
+
+#The Best Month Is Where Profit After Tax Was Equal To The Maximum
+best.month <- profit.after.tax == max(profit.after.tax)
+best.month
+
+#The Worst Month Is Where Profit After Tax Was Equal To The Minimum
+worst.month <- profit.after.tax == min(profit.after.tax)
+worst.month
+
+#Convert All Calculations To Units Of One Thousand Dollars
+revenue.1000 <- round(revenue / 1000, 0)
+expenses.1000 <- round(expenses /1000,0)
+profit.1000 <- round(profit/1000,0)
+profit.after.tax.1000 <- round(profit.after.tax/1000,0)
+
+#Print Results
+revenue.1000
+expenses.1000
+profit.1000
+profit.after.tax.1000
+profit.margin
+good.months
+bad.months
+best.month
+worst.month
+
+#BONUS:
+#Preview Of What's Coming In The Next Section
+M <- rbind(
+  revenue.1000,
+  expenses.1000,
+  profit.1000,
+  profit.after.tax.1000,
+  profit.margin,
+  good.months,
+  bad.months,
+  best.month,
+  worst.month
+)
+
+#Print The Matrix
+M
+
+```
 
 ## Practice 4
 
