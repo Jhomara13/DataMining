@@ -55,8 +55,8 @@ library(ggplot2)
 
 qplot(data = d1960, x = Fertility.Rate, y = Life1960,
       color = Region, size=I(2), shape=I(19), alpha =I(.5), 
-      main = "1960")
+      main = "Fertility Rate X Life Expectancy 1960")
 
 qplot(data = d2013, x = Fertility.Rate, y = Life2013,
       color = Region, size=I(2), shape=I(19), alpha =I(.5), 
-      main = "2013")
+      main = "Fertility Rate X Life Expectancy 2013")
