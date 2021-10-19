@@ -57,6 +57,6 @@ qplot(data = d2013, x = Fertility.Rate, y = Life2013,
 
 ```
 ## Fertility Rate X Life Expectancy 1960
-![Fertility Rate X Life Expectancy 1960](1960.png)
+![](https://github.com/Jhomara13/DataMining/blob/Unit1/Evaluation/1960.PNG)
 ## Fertility Rate X Life Expectancy 2013
-![Fertility Rate X Life Expectancy 2013](2013.png)
+![](2013.png)
