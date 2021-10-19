@@ -56,3 +56,7 @@ qplot(data = d2013, x = Fertility.Rate, y = Life2013,
       main = "Fertility Rate X Life Expectancy 2013")
 
 ```
+## Fertility Rate X Life Expectancy 1960
+![Fertility Rate X Life Expectancy 1960](1960.png)
+## Fertility Rate X Life Expectancy 2013
+![Fertility Rate X Life Expectancy 2013](2013.png)
