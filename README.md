@@ -528,6 +528,7 @@ head(soccer)
 ```
 
 #Plots
+
 #1. Point Scatter
 ```R
 library(ggplot2)
