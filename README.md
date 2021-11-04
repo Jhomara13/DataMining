@@ -1,5 +1,7 @@
 # DataMining
 
+## Unit 1
+
 ## Practice 1
 
 Test the Law Of Large Numbers for N random normally distributed numbers with mean = 0, stdev=1:
@@ -509,4 +511,10 @@ Because we have excluded free throws, this plot now shows us
 #on this plot are between 2 and 3. That is because Field Goals
 #can only be for either 2 points or 3 points.
 
-### Unit 2
+## Unit 2
+
+## Practice 1
+
+
+
+
