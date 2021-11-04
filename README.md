@@ -1,4 +1,4 @@
-## Unit 2
+# Unit 2
 
 ## Practice 1
 
@@ -16,7 +16,7 @@ head(soccer)
 
 #Plots
 
-#1. Point Scatter
+# 1. Point Scatter
 ```R
 library(ggplot2)
 
@@ -24,8 +24,12 @@ ggplot(soccer, aes(x=Goals, y=Mins,
                    color=Club)) + 
   geom_point()
 ```
+## Point Scatter
+![](https://github.com/Jhomara13/DataMining/blob/Unit2/Practices/C1.PNG)
 
-#2. Aspects
+With this graph we can observe all the players of the different teams, in relation to the minutes player with the goals we can see a large amount in 0 goals due to several factors, either by position, injuries, called, etc. We can also observe the top scorer of the competition of the Tottenham team.
+
+# 2. Aspects
 
 ```R
 w <- ggplot(soccer, aes(x=Goals, y=Matches,
@@ -34,8 +38,13 @@ w <- ggplot(soccer, aes(x=Goals, y=Matches,
 
 w + geom_point(size=3) + facet_grid(Club~.)
 ```
+## Aspects
+![](https://github.com/Jhomara13/DataMining/blob/Unit2/Practices/C2.PNG)
 
-#3.Distribution
+In this graph of facetar here I divided it each one by teams, with a relationship between goals and games played, I also specified for them to be graphs by scatter points with size of 3 and we can see that the concentration of goals is at 0 but they have several players with goals in the season. 
+
+
+# 3.Distribution
 
 ```R
 v <- ggplot(soccer, aes(x=Goals))
@@ -50,7 +59,11 @@ h +
         )
 ```
 
-## Image
+## Distribution
+![](https://github.com/Jhomara13/DataMining/blob/Unit2/Practices/C3.PNG)
+
+In this graph that is a little difficult to define but we have that the trend is marked between 0 and 5 goals, for all teams, then this has a significant drop after these scores, as there are few teams that manage to score many goals, either by the template or the capabilities of each player, and then we see at the end that there are very few in the area of 20 goals or more, here in the graph we modify the texts to display in X and Y. 
+
 
 
 
