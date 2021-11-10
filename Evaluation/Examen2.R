@@ -18,6 +18,8 @@ movies<-movies[movies$Genre=="action"|movies$Genre=="adventure"|movies$Genre=="a
 
 # Boxplot
 
+library(ggplot2)
+
 Ggraph <- ggplot(movies, aes(x=Genre, y=Gross...US))
 
 Ggraph + geom_jitter(aes(size=Budget...mill.,color=Studio)) + geom_boxplot(size=0.4, alpha=0.8)
@@ -32,5 +34,6 @@ GGgraph +
   xlab("Genre") +
   ylab("Groos % US") +
   ggtitle("Domestic Gross % by Genre")+
-  theme(axis.title.x = element_text(color = "Purple", size=14, family = "Calisto MT"),
-        axis.title.y = element_text(color = "Purple", size=14, family = "Calisto MT"))
+  theme(axis.title.x = element_text(color = "Purple", size=14),
+        axis.title.y = element_text(color = "Purple", size=14),
+        plot.title = element_text(color = "Black", size=18,hjust=0.5))
