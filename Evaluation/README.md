@@ -60,3 +60,7 @@ GGgraph +
 
 # Graph
 ![](https://github.com/Jhomara13/DataMining/blob/Unit2/Evaluation/Grafica.png)
+
+# Conclusion
+
+Here we have the domestic grosses for each of the studios divided by genres, we can see reflected what each of them earn, we can see that the profits are very oriented to the action genre and the percentage is between 40 and 50 percent, then we have the studios in animation with the lowest collection by 5 percent, and the highest to the studio good bista along with universal in both comedy and drama.
