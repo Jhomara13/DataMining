@@ -1,69 +1,80 @@
-# Unit 2
+# Unit 3
 
-## Practice 1
+# Practice 1
 
-#Generate three graphs with R that tell the story of the data, the first one
-a scatter plot of points, the second being a facet plot, and the second being a
-third, a graph that tells us something statistical such as the distribution of 
-the data and that contains the themes layer (theme).
+First we are going to import our csv that we are going to work with called Salary Data which shows the salary based on years of experience.
 
 ```R
-soccer <- read.csv(file.choose())
+# Importing the dataset
+dataset <- read.csv('Salary_Data.csv')
 ```
+
+Now to prepare the data with the catools package for the seed that will take random non-sequential data.
+
 ```R
-head(soccer)
+# Splitting the dataset into the Training set and Test set
+# Install.packages('caTools')
+library(caTools)
+set.seed(123)
 ```
 
-#Plots
+Now the split to prepare the datasets we are going to work with in this one, generates some true and false and with subset we are going to split them as training set and test_set
 
-# 1. Point Scatter
+```R
+split <- sample.split(dataset$Salary, SplitRatio = 2/3)
+training_set <- subset(dataset, split == TRUE)
+test_set <- subset(dataset, split == FALSE)
+```
+Now we are going to regress the lm or linear model with the relationship between salary and years of experience. 
+
+```R
+# Fitting Simple Linear Regression to the Training set
+regressor = lm(formula = Salary ~ YearsExperience,data = dataset)
+summary(regressor)
+```
+We now perform the prediction on the test data with the regressor. 
+
+```R
+# Predicting the Test set results
+y_pred = predict(regressor, newdata = test_set)
+```
+
+Now for the graphs we have the following code 
+
+## Visualising the Training set results
+
 ```R
 library(ggplot2)
-
-ggplot(soccer, aes(x=Goals, y=Mins, 
-                   color=Club)) + 
-  geom_point()
+ggplot() +
+  geom_point(aes(x=training_set$YearsExperience, y=training_set$Salary),
+             color = 'red') +
+  geom_line(aes(x = training_set$YearsExperience, y = predict(regressor, newdata = training_set)),
+            color = 'blue') +
+  ggtitle('Salary vs Experience (Training Set)') +
+  xlab('Years of experience') +
+  ylab('Salary')
 ```
-## Point Scatter
-![](https://github.com/Jhomara13/DataMining/blob/Unit2/Practices/C1.PNG)
 
-With this graph we can observe all the players of the different teams, in relation to the minutes player with the goals we can see a large amount in 0 goals due to several factors, either by position, injuries, called, etc. We can also observe the top scorer of the competition of the Tottenham team.
+![](https://github.com/Jhomara13/DataMining/blob/Unit3/Practices/G1P1.PNG)
 
-# 2. Aspects
+Here we have the salary graph based on the experience with the training set, we have our positive constant which indicates that the more years the better the salary, and that the prediction with the training set, graphs this positive line.
+
+## Visualising the Test set results
 
 ```R
-w <- ggplot(soccer, aes(x=Goals, y=Matches,
-                        color=Club))
-
-
-w + geom_point(size=3) + facet_grid(Club~.)
-```
-## Aspects
-![](https://github.com/Jhomara13/DataMining/blob/Unit2/Practices/C2.PNG)
-
-In this graph of facetar here I divided it each one by teams, with a relationship between goals and games played, I also specified for them to be graphs by scatter points with size of 3 and we can see that the concentration of goals is at 0 but they have several players with goals in the season. 
-
-
-# 3.Distribution
-
-```R
-v <- ggplot(soccer, aes(x=Goals))
-h <- v + geom_histogram(binwidth = 10, aes(fill=Club),
-                   color="Black")
-
-h +
-  xlab("Goals x Player") +
-  ylab("Number of players") + ggtitle("Goals by team Distribution") +
-  theme(axis.title.x = element_text(color = "Black", size=10),
-        axis.title.y = element_text(color = "Black", size=10),
-        )
+ggplot() +
+  geom_point(aes(x=test_set$YearsExperience, y=test_set$Salary),
+             color = 'red') +
+  geom_line(aes(x = training_set$YearsExperience, y = predict(regressor, newdata = training_set)),
+            color = 'blue') +
+  ggtitle('Salary vs Experience (Test Set)') +
+  xlab('Years of experience') +
+  ylab('Salary')
 ```
 
-## Distribution
-![](https://github.com/Jhomara13/DataMining/blob/Unit2/Practices/C3.PNG)
+![](https://github.com/Jhomara13/DataMining/blob/Unit3/Practices/G2P1.PNG)
 
-In this graph that is a little difficult to define but we have that the trend is marked between 0 and 5 goals, for all teams, then this has a significant drop after these scores, as there are few teams that manage to score many goals, either by the template or the capabilities of each player, and then we see at the end that there are very few in the area of 20 goals or more, here in the graph we modify the texts to display in X and Y. 
+Here we have the same graph but with our test set with 10 observations now we see exactly the same that our prediction based on the data is positive we see that some actual results are below the constant but the output is positive and rising.
 
-
-
+# Practice 2
 
