@@ -67,7 +67,8 @@ points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'springgreen3',
 points(set, pch = 21, bg = ifelse(set[, 3] == 1, 'green4', 'red3'))
 ```
 
-![](https://github.com/Jhomara13/DataMining/blob/Unit3/Practices/G-PE.PNG)
+![](https://github.com/Jhomara13/DataMining/blob/Unit3/Evaluation/G-PE.PNG)
+
 
 As a conclusion we can see that in the graph shown, many of the people have a salary estimate in which they can acquire the product they want, although most of them do not have a salary estimate or may not be old enough to be able to acquire it,
 With this we can see what is the approximate number of people who do meet the requirements.
