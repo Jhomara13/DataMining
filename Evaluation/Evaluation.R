@@ -2,6 +2,8 @@ library(e1071)
 library(naivebayes)
 library(caret)
 
+install.packages('e1071')
+
 
 dataset<-read.csv("Social_Network_Ads.csv")
 dataset = dataset[3:5]
@@ -17,7 +19,8 @@ test_set=subset(dataset,split==FALSE)
 training_set[-3]=scale(training_set[-3])
 test_set[-3]=scale(test_set[-3])
 
-classifier=naive_bayes(formula=Purchased ~ . ,
+
+classifier=naiveBayes(formula=Purchased ~ . ,
                        data=training_set,
                        type='C-classification',
                        kernel='linear')
