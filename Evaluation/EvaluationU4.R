@@ -1,6 +1,6 @@
 # Importing the dataset
-dataset = read.csv('Mall_Customers.csv')
-dataset = dataset[4:5]
+dataset = read.csv('iris.csv')
+dataset = dataset[1:4]
 
 
 # Using the elbow method to find the optimal number of clusters
@@ -16,7 +16,7 @@ plot(1:10,
 
 # Fitting K-Means to the dataset
 set.seed(29)
-kmeans = kmeans(x = dataset, centers = 5)
+kmeans = kmeans(x = dataset, centers = 3)
 y_kmeans = kmeans$cluster
 
 # Visualising the clusters
@@ -30,6 +30,6 @@ clusplot(dataset,
          labels = 2,
          plotchar = FALSE,
          span = TRUE,
-         main = paste('Clusters of customers'),
-         xlab = 'Annual Income',
-         ylab = 'Spending Score')
+         main = paste('Clusters of iris'),
+         xlab = 'Length',
+         ylab = 'Width')
