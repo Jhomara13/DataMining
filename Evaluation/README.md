@@ -1,66 +1,74 @@
-# Evaluation Unit 2
+# Evaluation Unit 3
 
-# We read the csv file, we have two options where we can obtain the data, one automatically and the other manually. We use the option that is manually.
+First we added the requested libraries, previously the naiveBayes package was installed. 
 
 ```R
-movies <- read.csv("Project-Data.csv")
-
-#or
-
-movies <- read.csv(file.choose())
-
-#show data
-
-movies
+library(e1071)
+library(naivebayes)
+library(caret)
 ```
 
-# Then we filter the data we need.
+Then we do the data loading, in this practice we are using the social_network_ads data collection.
 
 ```R
- filtering_Genre<-(filter(movies,Genre %in% c("action","adventure","animation","comedy","drama")))
-
- filtering_studios<-(filter(filtering_Genre,Studio %in% c("Buena Vista Studios","Sony","WB","Fox","Paramount Pictures","Universal")))
-
-#or
-
-
-movies<-movies[movies$Studio=="Buena Vista Studios"|movies$Studio=="Fox"|movies$Studio=="Paramount Pictures"|movies$Studio=="Sony"|movies$Studio=="Universal"|movies$Studio=="WB",]
-
-movies<-movies[movies$Genre=="action"|movies$Genre=="adventure"|movies$Genre=="animation"|movies$Genre=="comedy"|movies$Genre=="drama",]
+dataset<-read.csv("Social_Network_Ads.csv")
+dataset = dataset[3:5]
 ```
 
-# Now to create our graph we use ggplot2 and first with Aesthetics we tell it what we will use for x and y along with our data source and save it in the Ggraph variable, then we use geom_jittler for the point spread and geom_boxplot for the boxplot and set the size and transperency of it to be as similar to what we requested.
+We do a target coding 
 
 ```R
-# Boxplot
+dataset$Purchased=factor(dataset$Purchased,levels = c(0,1))
+```
+Next we make the division of the data in which we have the test data and the training data, within which we are requesting the values to be compared in a value equal to 0.75.
 
+```R
+library(caTools)
+set.seed(123)
+split=sample.split(dataset$Purchased, SplitRatio = 0.75)
+training_set=subset(dataset,split==TRUE)
+test_set=subset(dataset,split==FALSE)
+```
+Then we mention the limitations of each one, then we mention the use of naive bayes in which we make the comparison of the data.
+
+```R
+training_set[-3]=scale(training_set[-3])
+test_set[-3]=scale(test_set[-3])
+
+
+classifier=naiveBayes(formula=Purchased ~ . ,
+                       data=training_set,
+                       type='C-classification',
+                       kernel='linear')
+y_pred=predict(classifier,newdata=test_set[-3])
+y_pred
+```
+
+We generate the corresponding graph in which we make the comparison of salary income and age of the individuals.
+
+## Visualising the Test set results
+
+```R
 library(ggplot2)
+set = test_set
+X1 = seq(min(set[, 1]) - 1, max(set[, 1]) + 1, by = 0.01)
+X2 = seq(min(set[, 2]) - 1, max(set[, 2]) + 1, by = 0.01)
+grid_set = expand.grid(X1, X2)
+colnames(grid_set) = c('Age', 'EstimatedSalary')
+y_grid = predict(classifier, newdata = grid_set)
+plot(set[, -3], main = 'Classifier (Test set)',
+     xlab = 'Age', ylab = 'Estimated Salary',
+     xlim = range(X1), ylim = range(X2))
 
-Ggraph <- ggplot(movies, aes(x=Genre, y=Gross...US))
-
-Ggraph + geom_jitter(aes(size=Budget...mill.,color=Studio)) + geom_boxplot(size=0.4, alpha=0.8)
-
-GGgraph <- Ggraph + geom_jitter(aes(size=Budget...mill.,color=Studio)) + geom_boxplot(size=0.4, alpha=0.8)
-
-GGgraph
+contour(X1, X2, matrix(as.numeric(y_grid), length(X1), length(X2)), add =
+          TRUE)
+points(grid_set, pch = '.', col = ifelse(y_grid == 1, 'springgreen3',
+                                         'tomato'))
+points(set, pch = 21, bg = ifelse(set[, 3] == 1, 'green4', 'red3'))
 ```
-# Finally we modify the text both in x and y using theme, where we modify the color and size together with the title
 
-```R
-# Theme
+![](https://github.com/Jhomara13/DataMining/blob/Unit3/Evaluation/G-PE.PNG)
 
-GGgraph +
-  xlab("Genre") +
-  ylab("Groos % US") +
-  ggtitle("Domestic Gross % by Genre")+
-  theme(axis.title.x = element_text(color = "Purple", size=14),
-        axis.title.y = element_text(color = "Purple", size=14),
-        plot.title = element_text(color = "Black", size=18,hjust=0.5))
-```        
 
-# Graph
-![](https://github.com/Jhomara13/DataMining/blob/Unit2/Evaluation/Grafica.png)
-
-# Conclusion
-
-Here we have the domestic grosses for each of the studios divided by genres, we can see reflected what each of them earn, we can see that the profits are very oriented to the action genre and the percentage is between 40 and 50 percent, then we have the studios in animation with the lowest collection by 5 percent, and the highest to the studio good bista along with universal in both comedy and drama.
+As a conclusion we can see that in the graph shown, many of the people have a salary estimate in which they can acquire the product they want, although most of them do not have a salary estimate or may not be old enough to be able to acquire it,
+With this we can see what is the approximate number of people who do meet the requirements.
