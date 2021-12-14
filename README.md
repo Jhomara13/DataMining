@@ -29,7 +29,7 @@ plot(1:10,
      xlab = 'Number of clusters',
      ylab = 'WCSS')
 ```
-![](https://github.com/Jhomara13/DataMining/blob/Unit4/Evaluation/G1E4.PNG)
+![](https://github.com/Jhomara13/DataMining/blob/Unit-4/Evaluation/G1E4.PNG)
 
 Here we created the number of clusters which were 3 together with a random seed, it is worth mentioning that kmeans works in a way that through iterations between the data and these classifies them based on their characteristics.
 
@@ -57,6 +57,6 @@ clusplot(dataset,
          xlab = 'Length',
          ylab = 'Width')
 ```
-![](https://github.com/Jhomara13/DataMining/blob/Unit4/Evaluation/G2E4.PNG)
+![](https://github.com/Jhomara13/DataMining/blob/Unit-4/Evaluation/G2E4.PNG)
 
 Here we can visualize the grouping of the data, which separates them by similarities between sizes, we see that between group 1 and 2 have similarities and group 3 is totally isolated which is the setosa iris, on the other hand we have iris virginica and vergicolor that by their size are similar and that is why they share characteristics and is shown in the graph
