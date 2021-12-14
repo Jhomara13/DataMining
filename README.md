@@ -43,6 +43,7 @@ y_kmeans = kmeans$cluster
 
 # Visualising the clusters
 
+Then we will make the following graph in which we will be able to obtain more widely the information of the clusters that we have. Specifications have been added to be able to create it.
 ```R
 # install.packages('cluster')
 library(cluster)
